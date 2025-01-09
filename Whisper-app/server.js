@@ -26,7 +26,7 @@ app.get("/api/v1/whisper/", async (req, res) => {
 });
 // send the request by id
 app.get("/api/v1/whisper/:id",async (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
   const data = await getById(id)
   if(!data){
     res.sendStatus(404)
@@ -48,7 +48,7 @@ app.post("/api/v1/whisper", async (req, res) => {
 
 // update a whisper
 app.put("/api/v1/whisper/:id", async (req, res) => {
-   const id =  parseInt(req.params.id)
+   const id =  req.params.id
    const {message} =req.body
    if(!message){
     res.sendStatus(400)
@@ -65,7 +65,7 @@ app.put("/api/v1/whisper/:id", async (req, res) => {
 
 // delete a whisper
 app.delete("/api/v1/whisper/:id", async (req, res) => {
-  const id = parseInt(req.params.id)
+  const id = req.params.id
   const whisper = await getById(id)
   if(!whisper){
     res.sendStatus(404)
